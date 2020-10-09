@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\AppController;
+use app\controllers\UserController;
 use app\extensions\TwigMessages;
 use app\helpers\Auth;
 use app\middlewares\AuthMiddleware;
@@ -9,10 +10,10 @@ use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager;
 use Slim\App;
 use Slim\Flash\Messages;
+use Slim\Http\Environment;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
-use Twig\Environment;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 session_start();
@@ -60,13 +61,13 @@ $container['view'] = function () use ($container) {
 $app->get('/', AppController::class . ':index')->setName('app.index');
 
 $app->group('', function (App $app) {
-    $app->get('/login', AppController::class . ':login')->setName('app.login');
-    $app->post('/login', AppController::class . ':loginPost')->setName('app.login.submit');
+    $app->get('/login', UserController::class . ':login')->setName('app.login');
+    $app->post('/login', UserController::class . ':loginPost')->setName('app.login.submit');
 })->add(new GuestMiddleware($container));
 
 $app->group('', function (App $app) {
     $app->get('/home', AppController::class . ':home')->setName('app.home');
-    $app->get('/logout', AppController::class . ':logout')->setName('app.logout');
+    $app->get('/logout', UserController::class . ':logout')->setName('app.logout');
 })->add(new AuthMiddleware($container));
 
 /**
