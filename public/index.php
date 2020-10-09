@@ -72,9 +72,11 @@ $app->group('', function (App $app) {
     $app->get('/logout', UserController::class . ':logout')->setName('app.logout');
 })->add(new AuthMiddleware($container));
 
+
 /**
  * Run App
  */
-$app->get('/updateAdresse', AppController::class . ':Adresse')->setName('app.updateAdresse');
-$app->post('/updateAdresse', AppController::class . ':updateAdresse')->setName('app.updateAdresse');
+$app->get('/updateAdresse', AppController::class . ':updateAdresse')->setName('app.updateAdresse');
+$app->post('/updateAdresse', AppController::class . ':updateAdressePost')->setName('app.updateAdresse');
+
 $app->run();

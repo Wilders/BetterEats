@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\Auth;
+use app\models\Utilisateur;
 use Exception;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -45,5 +46,14 @@ final class UserController extends Controller {
         return $response;
     }
 
-
+    public function updateAdresse(Request $request, \http\Env\Response $response, array $args): Response {
+        $this->view->render($response, 'app/updateAdresse.twig');
+        return $response;
+    }
+    public function updateAdressePost(Request $request, Response $response, array $args): Response{
+        $utilisateur = new Utilisateur();
+        Auth::user();
+        $utilisateur->adresse = $_POST['inputAdresse'];
+        return $response;
+    }
 }

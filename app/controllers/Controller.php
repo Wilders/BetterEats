@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\helpers\Auth;
+use app\models\Restaurant;
 use app\models\Utilisateur;
+use http\Env\Response;
 use Slim\Container;
 
 /**
@@ -24,11 +27,4 @@ abstract class Controller {
         }
     }
 
-    public function adresse(){
-
-    }
-    public function updateAdresse(){
-        $utilisateur = new Utilisateur();
-
-    }
 }
