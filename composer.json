@@ -1,0 +1,14 @@
+{
+  "name": "project/BetterEats",
+  "type": "project",
+  "require": {
+    "illuminate/database": "8.9.*",
+    "php": ">=7.0",
+    "slim/slim": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "BetterEats\\": "src/"
+    }
+  }
+}
