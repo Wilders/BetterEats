@@ -4,8 +4,9 @@
 namespace app\models;
 
 
-class Commande
-{
+use Illuminate\Database\Eloquent\Model;
+
+class Commande extends Model {
     public $timestamps = true;
     protected $table = "commandes";
     protected $primaryKey = "idt";
