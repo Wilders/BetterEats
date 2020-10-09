@@ -3,6 +3,8 @@
 use app\controllers\AppController;
 use app\extensions\TwigMessages;
 use app\helpers\Auth;
+use app\middlewares\AuthMiddleware;
+use app\middlewares\GuestMiddleware;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager;
 use Slim\App;
@@ -56,6 +58,17 @@ $container['view'] = function () use ($container) {
 };
 
 $app->get('/', AppController::class . ':index')->setName('app.index');
+
+$app->group('', function (App $app) {
+    $app->get('/login', AppController::class . ':login')->setName('app.login');
+    $app->post('/login', AppController::class . ':loginPost')->setName('app.login.submit');
+})->add(new GuestMiddleware($container));
+
+$app->group('', function (App $app) {
+    $app->get('/home', AppController::class . ':home')->setName('app.home');
+    $app->get('/logout', AppController::class . ':logout')->setName('app.logout');
+})->add(new AuthMiddleware($container));
+
 /**
  * Run App
  */
