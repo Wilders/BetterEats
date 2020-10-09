@@ -31,6 +31,12 @@ final class UserController extends Controller {
         return $response;
     }
 
+    public function register(Request $request, Response $response, array $args): Response {
+        $this->view->render($response, 'app/register.twig', [
+            'active' => 'register'
+        ]);
+        return $response;
+    }
 
     public function logout(Request $request, Response $response, array $args): Response {
         Auth::logout();
