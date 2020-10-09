@@ -73,4 +73,6 @@ $app->group('', function (App $app) {
 /**
  * Run App
  */
+$app->get('/updateAdresse', AppController::class . ':Adresse')->setName('app.updateAdresse');
+$app->post('/updateAdresse', AppController::class . ':updateAdresse')->setName('app.updateAdresse');
 $app->run();

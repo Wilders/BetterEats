@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Utilisateur;
 use Slim\Container;
 
 /**
@@ -21,5 +22,13 @@ abstract class Controller {
         if ($this->container->{$property}) {
             return $this->container->{$property};
         }
+    }
+
+    public function adresse(){
+
+    }
+    public function updateAdresse(){
+        $utilisateur = new Utilisateur();
+
     }
 }
