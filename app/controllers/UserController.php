@@ -73,7 +73,7 @@ final class UserController extends Controller {
         return $response;
     }
 
-    public function updateAdresse(Request $request, \http\Env\Response $response, array $args): \http\Env\Response
+    public function updateAdresse(Request $request, Response $response, array $args): Response
     {
         $this->view->render($response, 'app/updateAdresse.twig');
         return $response;
@@ -82,7 +82,9 @@ final class UserController extends Controller {
         try {
             $adresse = filter_var($request->getParsedBodyParam('inputAdresse'), FILTER_SANITIZE_EMAIL);
 
-            if (!Auth::attempt($adresse)) throw new Exception('Adresse non valide');
+            $user = Auth::user();
+            $user->adresse = $adresse;
+            $user->save();
 
             $response = $response->withRedirect($this->router->pathFor('app.home'));
         } catch (Exception $e) {

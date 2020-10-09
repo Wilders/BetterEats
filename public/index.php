@@ -28,6 +28,7 @@ $db = new Manager();
 $db->addConnection([
     'driver' => $_ENV['DB_DRIVER'],
     'host' => $_ENV['DB_HOST'],
+    'port' => $_ENV['DB_PORT'],
     'database' => $_ENV['DB_NAME'],
     'username' => $_ENV['DB_USER'],
     'password' => $_ENV['DB_PWD']
