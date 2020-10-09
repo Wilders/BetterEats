@@ -1,36 +1,38 @@
 {% extends 'layouts/app_base.twig' %}
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="{{ base_url() }}/assets/css/login.css">
 {% endblock %}
 {% block content %}
     {% include 'layouts/flash.twig' %}
-    <form action="{}" method="post" class="form-register">
-        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-        <label for="inputEmail" class="sr-only">Lastname</label>
-        <input type="lastname" id="inputLastname" class="form-control" placeholder="Lastname" required autofocus>
+    <form class="form-signin" action="{{ path_for('app.register.submit') }}" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Inscripton</h1>
 
-        <label for="inputEmail" class="sr-only">Firstname</label>
-        <input type="firstname" id="inputFirstname" class="form-control" placeholder="Firstname" required>
+        <label for="inputLastname" class="sr-only">Nom</label>
+        <input type="lastname" id="inputLastname" class="form-control" placeholder="Nom" name="lastname" required autofocus>
+
+        <label for="inputFirstname" class="sr-only">Prénom</label>
+        <input type="firstname" id="inputFirstname" class="form-control" placeholder="Prénom" name="firstname" required>
 
         <label for="inputEmail" class="sr-only">Adresse e-mail</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Adresse e-mail" name="email" required>
 
         <label for="inputPassword" class="sr-only">Mot de passe</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="password" required>
 
-        <label for="inputEmail" class="sr-only">Address</label>
-        <input type="address" id="inputAddress" class="form-control" placeholder="Address" required>
+        <label for="inputAddress" class="sr-only">Adresse</label>
+        <input type="address" id="inputAddress" class="form-control" placeholder="Adresse" name="address" required>
 
         <label for="inputStatus" class="sr-only">Status</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputStatus" class="form-control" placeholder="Mot de passe" name="status" required>
 
         <input type="radio" id="client" name="status" value="client">
         <label for="client">Client</label><br>
         <input type="radio" id="restaurant" name="status" value="restaurant">
         <label for="restaurant">Restaurant</label><br>
         <input type="radio" id="livreur" name="status" value="livreur">
-        <label for="livreur">Delivery</label>
+        <label for="livreur">Livreur</label>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+        Or <a href="{{ path_for('app.login') }}">Login</a>.
     </form>
 {% endblock %}

@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\AppController;
+use app\controllers\RestaurantController;
 use app\controllers\UserController;
 use app\extensions\TwigMessages;
 use app\helpers\Auth;
@@ -63,13 +64,14 @@ $app->get('/', AppController::class . ':index')->setName('app.index');
 $app->group('', function (App $app) {
     $app->get('/login', UserController::class . ':login')->setName('app.login');
     $app->post('/login', UserController::class . ':loginPost')->setName('app.login.submit');
-    $app->get('/register', UserController::class . ':login')->setName('app.register');
-    $app->post('/register', UserController::class . ':login')->setName('app.register.submit');
+    $app->get('/register', UserController::class . ':register')->setName('app.register');
+    $app->post('/register', UserController::class . ':registerPost')->setName('app.register.submit');
 })->add(new GuestMiddleware($container));
 
 $app->group('', function (App $app) {
     $app->get('/home', AppController::class . ':home')->setName('app.home');
     $app->get('/logout', UserController::class . ':logout')->setName('app.logout');
+    $app->get('/restaurants', RestaurantController::class . ':restaurants')->setName('app.restaurants');
 })->add(new AuthMiddleware($container));
 
 
