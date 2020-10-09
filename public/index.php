@@ -63,6 +63,8 @@ $app->get('/', AppController::class . ':index')->setName('app.index');
 $app->group('', function (App $app) {
     $app->get('/login', UserController::class . ':login')->setName('app.login');
     $app->post('/login', UserController::class . ':loginPost')->setName('app.login.submit');
+    $app->get('/register', UserController::class . ':login')->setName('app.register');
+    $app->post('/register', UserController::class . ':login')->setName('app.register.submit');
 })->add(new GuestMiddleware($container));
 
 $app->group('', function (App $app) {
