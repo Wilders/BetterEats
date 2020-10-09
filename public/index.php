@@ -78,7 +78,10 @@ $app->group('', function (App $app) {
 /**
  * Run App
  */
-$app->get('/updateAdresse', AppController::class . ':updateAdresse')->setName('app.updateAdresse');
-$app->post('/updateAdresse', AppController::class . ':updateAdressePost')->setName('app.updateAdresse');
+$app->group('',function (App $app){
+$app->get('/updateAdresse', UserController::class . ':updateAdresse')->setName('app.updateAdresse');
+$app->post('/updateAdresse', UserController::class . ':updateAdressePost')->setName('app.updateAdresse.submit');
+})->add(new AuthMiddleware($container));
+
 
 $app->run();
