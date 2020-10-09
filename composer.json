@@ -1,15 +1,26 @@
 {
-  "name": "project/BetterEats",
+  "name": "project/bettereats",
   "type": "project",
+  "license": "proprietary",
+  "version": "0.0.1",
+  "description": "Better Eats - CESI 2020",
+  "authors": [
+    {
+      "name": "Jules Sayer",
+      "email": "jules.sayer@apitech-solution.com"
+    }
+  ],
   "require": {
-    "illuminate/database": "8.9.*",
-    "php": ">=7.0",
-    "slim/slim": "3.*",
-    "vlucas/phpdotenv": "^5.2"
+    "vlucas/phpdotenv": "^5.2",
+    "slim/slim": "^3.12",
+    "slim/flash": "^0.4.0",
+    "slim/twig-view": "^2.5",
+    "php": "^7.4",
+    "illuminate/database": "^8.9"
   },
   "autoload": {
     "psr-4": {
-      "BetterEats\\": "src/"
+      "app\\": "app/"
     }
   }
 }
