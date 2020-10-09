@@ -21,4 +21,7 @@ class Restaurant extends Model {
     public function proprietaire() {
         return $this->hasOne('App\models\Utilisateur', 'idt');
     }
+    public function commandes() {
+        return $this->hasMany('App\models\Commande','idt');
+    }
 }
