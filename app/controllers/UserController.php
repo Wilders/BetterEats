@@ -39,6 +39,33 @@ final class UserController extends Controller {
         return $response;
     }
 
+    public function registerPost(Request $request, Response $response, array $args): Response {
+        try {
+            $firstname = filter_var($request->getParsedBodyParam('firstname'), FILTER_SANITIZE_STRING);
+            $lastname = filter_var($request->getParsedBodyParam('lastname'), FILTER_SANITIZE_STRING);
+            $address = filter_var($request->getParsedBodyParam('address'), FILTER_SANITIZE_STRING);
+            $email = filter_var($request->getParsedBodyParam('email'), FILTER_SANITIZE_EMAIL);
+            $password = filter_var($request->getParsedBodyParam('password'), FILTER_SANITIZE_STRING);
+            $status = filter_var($request->getParsedBodyParam('status'), FILTER_SANITIZE_STRING);
+
+            $user = new Utilisateur();
+            $user->nom = $firstname;
+            $user->prenom = $lastname;
+            $user->email = $email;
+            $user->mdp = password_hash($password, PASSWORD_DEFAULT);;
+            $user->adresse = $address;
+            $user->statut = $status;
+            $user->save();
+
+            $this->flash->addMessage('success', "$firstname, votre compte a été créé! Vous pouvez dès à présent vous connecter.");
+            $response = $response->withRedirect($this->router->pathFor('app.login'));
+        } catch (Exception $e) {
+            $this->flash->addMessage('error', $e->getMessage());
+            $response = $response->withRedirect($this->router->pathFor("app.register"));
+        }
+        return $response;
+    }
+
     public function logout(Request $request, Response $response, array $args): Response {
         Auth::logout();
         $this->flash->addMessage('success', "Vous avez été déconnecté.");
