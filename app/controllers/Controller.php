@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+use app\helpers\Auth;
+use app\models\Restaurant;
+use app\models\Utilisateur;
+use http\Env\Response;
 use Slim\Container;
 
 /**
@@ -22,4 +26,5 @@ abstract class Controller {
             return $this->container->{$property};
         }
     }
+
 }

@@ -1,0 +1,13 @@
+{% extends 'layouts/app_base.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ base_url() }}/assets/css/adresse.css">
+{% endblock %}
+{% block content %}
+    {% include 'layouts/flash.twig' %}
+
+    <form class="form-signin" action="{{ path_for('app.updateAdresse.submit') }}" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Adresse</h1>
+        <label for="inputAdresse">Nouvelle Adresse</label><input type="text" id="inputAdresse" class="form-control" name="inputAdresse" placeholder="{{ auth.user().adresse }}" required autofocus>
+        <button class="btn btn-lg btn-warning btn-block" type="submit">Modifier</button>
+    </form>
+{% endblock %}
