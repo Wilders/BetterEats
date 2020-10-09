@@ -10,7 +10,7 @@ use Slim\Http\Response;
 final class UserController extends Controller {
 
     public function login(Request $request, Response $response, array $args): Response {
-        $this->view->render($response, 'pages/login.twig', [
+        $this->view->render($response, 'app/login.twig', [
             'active' => 'login'
         ]);
         return $response;
