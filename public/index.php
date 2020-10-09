@@ -2,6 +2,7 @@
 
 use app\controllers\AppController;
 use app\extensions\TwigMessages;
+use app\helpers\Auth;
 use Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager;
 use Slim\App;
@@ -43,10 +44,10 @@ $container['view'] = function () use ($container) {
     ]);
 
 
-//    $view->getEnvironment()->addGlobal('auth', [
-//        'check' => Auth::check(),
-//        'user' => Auth::user()
-//    ]);
+    $view->getEnvironment()->addGlobal('auth', [
+        'check' => Auth::check(),
+        'user' => Auth::user()
+    ]);
 
     $view->addExtension(new TwigExtension($container->router, Uri::createFromEnvironment(new Environment($_SERVER))));
     $view->addExtension(new TwigMessages(new Messages()));
