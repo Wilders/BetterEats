@@ -6,8 +6,7 @@ namespace app\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Restaurant extends Model
-{
+class Restaurant extends Model {
     public $timestamps = false;
     protected $table = "restaurants";
     protected $primaryKey = "idt";
@@ -19,7 +18,7 @@ class Restaurant extends Model
         'idt_proprietaire'
     ];
 
-    public function proprietaire(){
-        return $this->hasOne('App\models\Utilisateur','idt');
+    public function proprietaire() {
+        return $this->hasOne('App\models\Utilisateur', 'idt');
     }
 }
